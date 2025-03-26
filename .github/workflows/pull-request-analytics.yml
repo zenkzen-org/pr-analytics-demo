@@ -27,8 +27,8 @@ jobs:
           GITHUB_REPO_FOR_ISSUE: pr-analytics-demo
           GITHUB_OWNER_FOR_ISSUE: zenkzen-org
           GITHUB_OWNERS_REPOS: zenkzen-org/runner-test
-          CORE_HOURS_START: "09:00"
-          CORE_HOURS_END: "22:00"
+          CORE_HOURS_START: "00:00"
+          CORE_HOURS_END: "23:56"
           # TIMEZONE: "Asia/Shanghai"
           REPORT_DATE_START: ${{ env.START_DATE }}
           # REPORT_DATE_START: 20/7/2024

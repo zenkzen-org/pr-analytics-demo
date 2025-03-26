@@ -29,7 +29,7 @@ jobs:
           GITHUB_OWNERS_REPOS: zenkzen-org/runner-test
           CORE_HOURS_START: "09:00"
           CORE_HOURS_END: "22:00"
-          # TIMEZONE: "Asia/Shanghai"
+          TIMEZONE: "Asia/Shanghai"
           REPORT_DATE_START: ${{ env.START_DATE }}
           # REPORT_DATE_START: 20/7/2024
           REPORT_DATE_END: ${{ env.END_DATE }}

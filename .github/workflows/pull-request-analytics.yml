@@ -31,6 +31,6 @@ jobs:
           # REPORT_DATE_START: ${{ env.START_DATE }}
           # REPORT_DATE_END: ${{ env.END_DATE }}
           REPORT_DATE_START: 22/2/2024
-          REPORT_DATE_END: 27/3/2025
+          REPORT_DATE_END: 26/3/2025
           # REPORT_DATE_START: ${{ inputs.report_date_start }}
           # REPORT_DATE_END: ${{ inputs.report_date_end }}

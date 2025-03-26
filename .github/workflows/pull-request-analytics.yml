@@ -1,15 +1,15 @@
 name: "PR Analytics"
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    branches: [ main, master ]
+#   # Triggers the workflow on push or pull request events but only for the master branch
+#   push:
+#     branches: [ main, master ]
 
   workflow_dispatch:
-    # inputs:
-    #   report_date_start:
-    #     description: "Report date start(d/MM/yyyy)"
-    #   report_date_end:
-    #     description: "Report date end(d/MM/yyyy)"
+    inputs:
+      report_date_start:
+        description: "Report date start(d/MM/yyyy)"
+      report_date_end:
+        description: "Report date end(d/MM/yyyy)"
 jobs:
   create-report:
     name: "Create report"
@@ -31,6 +31,8 @@ jobs:
           # CORE_HOURS_END: "23:59"
           TIMEZONE: "Asia/Shanghai"
           # REPORT_DATE_START: ${{ env.START_DATE }}
-          REPORT_DATE_START: 20/7/2024
+          # REPORT_DATE_START: 20/7/2024
           # REPORT_DATE_END: ${{ env.END_DATE }}
-          REPORT_DATE_END: 27/03/25
+          # REPORT_DATE_END: 27/03/25
+          REPORT_DATE_START: ${{ inputs.report_date_start }}
+          REPORT_DATE_END: ${{ inputs.report_date_end }}

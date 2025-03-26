@@ -31,4 +31,5 @@ jobs:
           # CORE_HOURS_END: "23:59"
           TIMEZONE: "Asia/Shanghai"
           REPORT_DATE_START: ${{ env.START_DATE }}
-          REPORT_DATE_END: ${{ env.END_DATE }}
+          # REPORT_DATE_END: ${{ env.END_DATE }}
+          REPORT_DATE_END: 27/03/25

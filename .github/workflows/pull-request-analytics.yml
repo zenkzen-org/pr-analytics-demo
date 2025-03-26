@@ -2,8 +2,11 @@ name: "PR Analytics"
 on:
 #   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ main, master ]
-
+    # branches: [ main, master ]
+    pull_request:
+      branches:
+        - main
+        - master
   # workflow_dispatch:
   #   inputs:
   #     report_date_start:
@@ -26,7 +29,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PR_TOKEN }} # In the case of a personal access token, it needs to be added to the repository's secrets and used in this field.
           GITHUB_REPO_FOR_ISSUE: pr-analytics-demo
           GITHUB_OWNER_FOR_ISSUE: zenkzen-org
-          GITHUB_OWNERS_REPOS: zenkzen-org/runner-test
+          GITHUB_OWNERS_REPOS: zenkzen-org/pr-analytics-demo
+          # GITHUB_OWNERS_REPOS: zenkzen-org/runner-test
           TIMEZONE: "Asia/Shanghai"
           REPORT_DATE_START: ${{ env.START_DATE }}
           REPORT_DATE_END: ${{ env.END_DATE }}

@@ -1,16 +1,21 @@
 name: "PR Analytics"
 on:
   workflow_dispatch:
-    inputs:
-      report_date_start:
-        description: "Report date start(d/MM/yyyy)"
-      report_date_end:
-        description: "Report date end(d/MM/yyyy)"
+    # inputs:
+    #   report_date_start:
+    #     description: "Report date start(d/MM/yyyy)"
+    #   report_date_end:
+    #     description: "Report date end(d/MM/yyyy)"
 jobs:
   create-report:
     name: "Create report"
     runs-on: ubuntu-latest
     steps:
+      - name: Get Current Date
+        run: |
+          echo "START_DATE=$(date -d '30 days ago' +%d/%m/%y)" >> $GITHUB_ENV
+          echo "END_DATE=$(date '+%d/%m/%y')" >> $GITHUB_ENV
+
       - name: "Run script for analytics"
         uses: AlexSim93/pull-request-analytics-action@v4
         with:
@@ -21,5 +26,5 @@ jobs:
           CORE_HOURS_START: "9:00"
           CORE_HOURS_END: "19:00"
           TIMEZONE: "Asia/Shanghai"
-          REPORT_DATE_START: ${{ inputs.report_date_start }}
-          REPORT_DATE_END: ${{ inputs.report_date_end }}
+          REPORT_DATE_START: ${{ env.START_DATE }}
+          REPORT_DATE_END: ${{ env.END_DATE }}

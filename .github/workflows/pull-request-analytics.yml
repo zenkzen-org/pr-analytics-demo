@@ -13,7 +13,7 @@ jobs:
       - name: "Get Date"
         run: |
           echo "START_DATE=$(TZ=Asia/Shanghai date -d '30 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
-          echo "END_DATE=$(TZ=Asia/Shanghai date -d '+1 day' +%-d/%-m/%Y)" >> $GITHUB_ENV
+          echo "END_DATE=$(TZ=Asia/Shanghai date +%-d/%-m/%Y)" >> $GITHUB_ENV
 
       - name: "Run script for analytics"
         uses: AlexSim93/pull-request-analytics-action@v4

@@ -7,7 +7,7 @@ on:
   #     - master
   #     - test3
   schedule:
-    - cron: '9 9 * * 3' #UTC time
+    - cron: '20 9 * * 3' #UTC time
     - cron: '0 1 1 * *'
 jobs:
   create-report:

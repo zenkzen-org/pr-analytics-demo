@@ -43,3 +43,4 @@ jobs:
           TIMEZONE: Asia/Shanghai
           REPORT_DATE_START: ${{ env.START_DATE }}
           REPORT_DATE_END: ${{ env.END_DATE }}
+          PERIOD_SPLIT_UNIT: none

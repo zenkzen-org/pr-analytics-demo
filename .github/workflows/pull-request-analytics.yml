@@ -7,7 +7,7 @@ on:
   #     - master
   #     - test3
   schedule:
-    - cron: '20 9 * * 3' #UTC time
+    - cron: '40 9 * * 3' #UTC time
     - cron: '0 1 1 * *'
 jobs:
   create-report:
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Get the date range of the last week"
-        if: github.event.schedule == '20 9 * * 3'
+        if: github.event.schedule == '40 9 * * 3'
         run: |
           echo "START_DATE=$(TZ=Asia/Shanghai date -d '8 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
           echo "END_DATE=$(TZ=Asia/Shanghai date -d '1 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV

@@ -1,19 +1,33 @@
 name: "PR Analytics"
 
 on:
-  push:
-    branches:
-      - main
-      - master
-      - test3
+  # push:
+  #   branches:
+  #     - main
+  #     - master
+  #     - test3
   schedule:
-    - cron: '8 9 * * 3' #UTC time
+    - cron: '9 9 * * 3' #UTC time
     - cron: '0 1 1 * *'
 jobs:
   create-report:
     name: "Create report"
     runs-on: ubuntu-latest
     steps:
+      - name: "Get the date range of the last week"
+        if: github.event.schedule == '9 9 * * 3'
+        run: |
+          echo "START_DATE=$(TZ=Asia/Shanghai date -d '8 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
+          echo "END_DATE=$(TZ=Asia/Shanghai date -d '1 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
+          echo "CRON_PERIOD=week" >> $GITHUB_ENV
+
+      - name: "Get the date range of the last month"
+        if: github.event.schedule == '0 1 1 * *'
+        run: |
+          echo "START_DATE=$(TZ=Asia/Shanghai date -d "last month" +1/%-m/%Y)" >> $GITHUB_ENV
+          echo "END_DATE=$(TZ=Asia/Shanghai date -d '1 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
+          echo "CRON_PERIOD=month" >> $GITHUB_ENV
+
       - name: "Get Date"
         run: |
           echo "START_DATE=$(TZ=Asia/Shanghai date -d '30 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV

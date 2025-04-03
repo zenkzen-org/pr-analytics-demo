@@ -7,28 +7,27 @@ on:
   #     - master
   #     - test3
   schedule:
-    - cron: '35 9 * * *' #UTC time
-    - cron: '0 1 1 * *'
+    - cron: '30 10 * * *' #UTC time
+    - cron: '45 0 1 * *'
 jobs:
   create-report:
     name: "Create report"
     runs-on: ubuntu-latest
     steps:
-
       - name: "Get Date"
         run: |
           echo "START_DATE=$(TZ=Asia/Shanghai date -d '30 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
           echo "END_DATE=$(TZ=Asia/Shanghai date +%-d/%-m/%Y)" >> $GITHUB_ENV
 
       - name: "Get the date range of the last week"
-        if: github.event.schedule == '40 9 * * 3'
+        if: github.event.schedule == '30 10 * * *'
         run: |
           echo "START_DATE=$(TZ=Asia/Shanghai date -d '8 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
           echo "END_DATE=$(TZ=Asia/Shanghai date -d '1 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
           echo "CRON_PERIOD=week" >> $GITHUB_ENV
 
       - name: "Get the date range of the last month"
-        if: github.event.schedule == '0 1 1 * *'
+        if: github.event.schedule == '45 0 1 * *'
         run: |
           echo "START_DATE=$(TZ=Asia/Shanghai date -d "last month" +1/%-m/%Y)" >> $GITHUB_ENV
           echo "END_DATE=$(TZ=Asia/Shanghai date -d '1 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV

@@ -14,6 +14,12 @@ jobs:
     name: "Create report"
     runs-on: ubuntu-latest
     steps:
+
+      - name: "Get Date"
+        run: |
+          echo "START_DATE=$(TZ=Asia/Shanghai date -d '30 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
+          echo "END_DATE=$(TZ=Asia/Shanghai date +%-d/%-m/%Y)" >> $GITHUB_ENV
+
       - name: "Get the date range of the last week"
         if: github.event.schedule == '40 9 * * 3'
         run: |
@@ -28,19 +34,17 @@ jobs:
           echo "END_DATE=$(TZ=Asia/Shanghai date -d '1 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
           echo "CRON_PERIOD=month" >> $GITHUB_ENV
 
-      - name: "Get Date"
-        run: |
-          echo "START_DATE=$(TZ=Asia/Shanghai date -d '30 days ago' +%-d/%-m/%Y)" >> $GITHUB_ENV
-          echo "END_DATE=$(TZ=Asia/Shanghai date +%-d/%-m/%Y)" >> $GITHUB_ENV
-
       - name: "Run script for analytics"
         uses: AlexSim93/pull-request-analytics-action@v4
         with:
           GITHUB_TOKEN: ${{ secrets.PR_TOKEN }} # In the case of a personal access token, it needs to be added to the repository's secrets and used in this field.
           GITHUB_REPO_FOR_ISSUE: pr-analytics-demo
           GITHUB_OWNER_FOR_ISSUE: zenkzen-org
-          GITHUB_OWNERS_REPOS: zenkzen-org/pr-analytics-demo,zenkzen-org/runner-test
+          ORGANIZATIONS: zenkzen-org
+          # GITHUB_OWNERS_REPOS: zenkzen-org/pr-analytics-demo,zenkzen-org/runner-test
           TIMEZONE: Asia/Shanghai
           REPORT_DATE_START: ${{ env.START_DATE }}
           REPORT_DATE_END: ${{ env.END_DATE }}
+          ISSUE_TITLE: Pull requests report(${{ env.START_DATE }}-${{ env.END_DATE }})
           PERIOD_SPLIT_UNIT: none
+          AGGREGATE_VALUE_METHODS: average

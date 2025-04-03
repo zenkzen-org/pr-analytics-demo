@@ -1,9 +1,9 @@
 name: "PR Analytics"
 
 on:
-  # push:
-  #   branches:
-  #     - main
+  push:
+    branches:
+      - main
   #     - master
   #     - test3
   schedule:

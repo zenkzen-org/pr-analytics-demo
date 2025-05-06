@@ -6,9 +6,9 @@ on:
       - main
   #     - master
   #     - test3
-  schedule:
-    - cron: '30 10 * * *' #UTC time
-    - cron: '45 0 1 * *'
+  # schedule:
+  #   - cron: '30 10 * * *' #UTC time
+  #   - cron: '45 0 1 * *'
 jobs:
   create-report:
     name: "Create report"
